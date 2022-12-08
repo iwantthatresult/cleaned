@@ -20,11 +20,6 @@ if missing:
     subprocess.check_call([sys.executable, '-m', 'pip', 'install', *missing])
 
 import spleeter
-import IPython.display as ipd
-from IPython.display import Audio, display
-from IPython.display import HTML
-
-import tqdm
 from pytube import YouTube
 import os
 from pathlib import Path
