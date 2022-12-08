@@ -38,11 +38,11 @@ import time
 cwd=str(os.getcwd())
 
 subprocess.run(["git", "clone", "https://github.com/iwantthatresult/ytdlspleeter.git"])
-gitdir=cwd+'/ytdlspleeter.git'
+gitdir=cwd+'/ytdlspleeter'
 
 def save(fname):
   savecwd=cwd
-  os.chdir(cwd +'/ytdlspleeter.git')
+  os.chdir(cwd +'/ytdlspleeter')
   subprocess.run(['git','remote', 'set-url', 'origin', 'https://iwantthatresult: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@github.com/iwantthatresult/ytdlspleeter.git'])
   subprocess.run(['mv' ,savecwd+'/audio/'+fname, './data'])
   subprocess.run(['git','add', './data/'+fname])
