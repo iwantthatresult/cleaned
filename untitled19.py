@@ -11,7 +11,7 @@ import sys
 import subprocess
 import pkg_resources
 
-subprocess.run([sys.executable,"-m", 'apt' ,'install' ,'ffmpeg','google-api-python-client', 'google-auth-httplib2','google-auth-oauthlib'])
+subprocess.run([sys.executable,"-m", 'apt' ,'install' ,'ffmpeg'])
 
 required  = {'pytube', 'gdown','spleeter','streamlit','pydrive'} 
 installed = {pkg.key for pkg in pkg_resources.working_set}
@@ -25,37 +25,31 @@ if missing:
 
 import spleeter
 import os
-
-import tqdm
 from pytube import YouTube
 import os
 from pathlib import Path
 import subprocess
 import streamlit as st
-from pydrive.auth import GoogleAuth
-from pydrive.drive import GoogleDrive
-from zipfile import ZipFile
 import os
 from os.path import basename
 import time
 
-subprocess.run(['mv' ,'/app/ytdwnloader/', '/app/ytdwnloader1/'])
 
 cwd=str(os.getcwd())
 
-subprocess.run(["git", "clone", "https://github.com/iwantthatresult/ytdwnloader.git"])
-gitdir=cwd+'/ytdwnloader'
+subprocess.run(["git", "clone", "https://github.com/iwantthatresult/ytdlspleeter.git"])
+gitdir=cwd+'/ytdlspleeter.git'
 
 def save(fname):
   savecwd=cwd
-  os.chdir(cwd +'/ytdwnloader')
-  subprocess.run(['git','remote', 'set-url', 'origin', 'https://iwantthatresult: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@github.com/iwantthatresult/ytdwnloader.git'])
+  os.chdir(cwd +'/ytdlspleeter.git')
+  subprocess.run(['git','remote', 'set-url', 'origin', 'https://iwantthatresult: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@github.com/iwantthatresult/ytdlspleeter.git'])
   subprocess.run(['mv' ,savecwd+'/audio/'+fname, './data'])
   subprocess.run(['git','add', './data/'+fname])
   subprocess.run(['git','config','user.email', '"space.punk3r@gmail.com"'])
   subprocess.run(['git','config','user.name', '"iwantthatresult"'])
   subprocess.run(['git', 'commit', '-m', '"adding new song"'])
-  subprocess.run(['git' ,'push',  'https://iwantthatresult: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@github.com/iwantthatresult/ytdwnloader.git'])
+  subprocess.run(['git' ,'push',  'https://iwantthatresult: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@github.com/iwantthatresult/ytdlspleeter.git'])
   os.chdir(savecwd)
 
 
