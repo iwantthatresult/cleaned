@@ -48,7 +48,7 @@ def save(fname):
   subprocess.run(['git','config','user.email', '"space.punk3r@gmail.com"'])
   subprocess.run(['git','config','user.name', '"iwantthatresult"'])
   subprocess.run(['git', 'commit', '-m', '"adding new song"'])
-  subprocess.run(['git' ,'push',  'https://iwantthatresult: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@github.com/iwantthatresult/ytdlspleeter.git'])
+  subprocess.run(['git' ,'push',  'https://iwantthatresult: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@github.com/iwantthatresult/ytdlspleeter.git'])
   os.chdir(savecwd)
     
 def youtube2mp3 (url,outdir,fname):
