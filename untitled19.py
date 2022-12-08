@@ -11,7 +11,7 @@ import sys
 import subprocess
 import pkg_resources
 
-required  = {'pytube', 'gdown', 'spleeter','sffmpeg'} 
+required  = {'pytube', 'gdown', 'spleeter','ffmpeg'} 
 installed = {pkg.key for pkg in pkg_resources.working_set}
 missing   = required - installed
 
