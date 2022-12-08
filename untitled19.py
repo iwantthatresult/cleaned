@@ -53,6 +53,10 @@ def youtube2mp3 (url,outdir,fname):
         fname=cwd+"/audio/"+"/"+fname+'/'+fname+'.mp3'
         out=cwd+'/audio/'
         subprocess.run(["spleeter", "separate", fname ,"-p" "spleeter:5stems", "-c", "mp3", "-o", out], capture_output=True)
+        audio_file = open(fname, 'rb')
+        audio_bytes = audio_file.read()
+        st.audio(audio_bytes, format='mp3')
+        user_input=st.text_input(fname)
     else:
         print(f'ERROR: {yt.title}could not be downloaded!')
     
