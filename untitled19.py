@@ -34,6 +34,7 @@ import os
 from os.path import basename
 import time
   
+  
 cwd=str(os.getcwd())
 
 subprocess.run(["git", "clone", "https://github.com/iwantthatresult/ytdlspleeter.git"])
@@ -42,14 +43,15 @@ gitdir=cwd+'ytdlspleeter'
 def save(fname):
   savecwd=cwd
   os.chdir(cwd +'/ytdlspleeter')
-  subprocess.run(['git','remote', 'set-url', 'origin', 'https://iwantthatresult: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@github.com/iwantthatresult/ytdlspleeter.git'])
+  subprocess.run(['git','remote', 'set-url', 'origin', 'https://iwantthatresult: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@github.com/iwantthatresult/ytdlspleeter.git'])
   subprocess.run(['mv' ,savecwd+'/audio/'+fname, './data'])
   subprocess.run(['git','add', './data/'+fname])
   subprocess.run(['git','config','user.email', '"space.punk3r@gmail.com"'])
   subprocess.run(['git','config','user.name', '"iwantthatresult"'])
   subprocess.run(['git', 'commit', '-m', '"adding new song"'])
-  subprocess.run(['git' ,'push',  'https://iwantthatresult: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@github.com/iwantthatresult/ytdlspleeter.git'])
+  subprocess.run(['git' ,'push',  'https://iwantthatresult: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@github.com/iwantthatresult/ytdlspleeter.git'])
   os.chdir(savecwd)
+
     
 def youtube2mp3 (url,outdir,fname):
     # url input from user
