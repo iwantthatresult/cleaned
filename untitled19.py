@@ -39,6 +39,8 @@ import os
 from os.path import basename
 import time
 
+subprocess.run(['mv' ,'/app/ytdwnloader/', '/app/ytdwnloader1/'])
+
 cwd=str(os.getcwd())
 
 subprocess.run(["git", "clone", "https://github.com/iwantthatresult/ytdwnloader.git"])
