@@ -48,7 +48,7 @@ def save(fname):
   savecwd=cwd
   os.chdir(cwd +'/ytdwnloader')
   subprocess.run(['git','remote', 'set-url', 'origin', 'https://iwantthatresult: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@github.com/iwantthatresult/ytdwnloader.git'])
-  subprocess.run(['mv' ,'./audio/'+fname, './data'])
+  subprocess.run(['mv' ,savecwd+'/audio/'+fname, './data'])
   subprocess.run(['git','add', './data/'+fname])
   subprocess.run(['git','config','user.email', '"space.punk3r@gmail.com"'])
   subprocess.run(['git','config','user.name', '"iwantthatresult"'])
