@@ -11,7 +11,7 @@ import sys
 import subprocess
 import pkg_resources
 
-required  = {'pytube', 'gdown', 'spleeter','ffmpeg'} 
+required  = {'pytube', 'gdown', 'spleeter','ffmpeg','streamlit'} 
 installed = {pkg.key for pkg in pkg_resources.working_set}
 missing   = required - installed
 
@@ -20,10 +20,16 @@ if missing:
     subprocess.check_call([sys.executable, '-m', 'pip', 'install', *missing])
 
 import spleeter
+import IPython.display as ipd
+from IPython.display import Audio, display
+from IPython.display import HTML
+
+import tqdm
 from pytube import YouTube
 import os
 from pathlib import Path
 import subprocess
+import streamlit as st
 
 
 def youtube2mp3 (url,outdir,fname):
@@ -45,13 +51,20 @@ def youtube2mp3 (url,outdir,fname):
         subprocess.run(["spleeter", "separate", fname ,"-p" "spleeter:5stems", "-c", "mp3", "-o", "/content/audio/"], capture_output=True)
     else:
         print(f'ERROR: {yt.title}could not be downloaded!')
+
+    return yt.title
     
 
 def audiodl(id):
+  title=[]
   id=str.split(id)
   print(id)
   for i in range(0,len(id)):
     url='www.youtube.com/watch?v='+id[i]
-    youtube2mp3(url,'/content/audio/'+str(id[i])+"",id[i])
+    a=youtube2mp3(url,'/content/audio/'+str(id[i])+"",id[i])
+    title.append(a)
+  return ' '.join(title)
 
-audiodl(input())
+user_input = st.text_input("ça commence", '')
+a=audiodl(user_input)
+user_input=st.text_input(a)
