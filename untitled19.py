@@ -11,15 +11,17 @@ import sys
 import subprocess
 import pkg_resources
 
-subprocess.run([sys.executable,"-m", 'apt' ,'install' ,'ffmpeg'])
+subprocess.run([sys.executable,"-m", 'apt' ,'install' ,'ffmpeg','google-api-python-client', 'google-auth-httplib2','google-auth-oauthlib'])
 
-required  = {'pytube', 'gdown','spleeter','streamlit'} 
+required  = {'pytube', 'gdown','spleeter','streamlit','pydrive'} 
 installed = {pkg.key for pkg in pkg_resources.working_set}
 missing   = required - installed
 
 if missing:
     # implement pip as a subprocess:
     subprocess.check_call([sys.executable, '-m', 'pip', 'install', *missing])
+
+
 
 import spleeter
 import os
@@ -30,8 +32,29 @@ import os
 from pathlib import Path
 import subprocess
 import streamlit as st
+from pydrive.auth import GoogleAuth
+from pydrive.drive import GoogleDrive
+from zipfile import ZipFile
+import os
+from os.path import basename
+import time
 
 cwd=str(os.getcwd())
+
+subprocess.run(["git", "clone", "https://github.com/iwantthatresult/ytdwnloader.git"])
+gitdir=cwd+'/ytdwnloader'
+
+def save(fname):
+  savecwd=cwd
+  os.chdir(cwd +'/ytdwnloader')
+  subprocess.run(['git','remote', 'set-url', 'origin', 'https://iwantthatresult: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@github.com/iwantthatresult/ytdwnloader.git'])
+  subprocess.run(['mv' ,'/content/audio/'+fname, './data'])
+  subprocess.run(['git','add', './data/'+fname])
+  subprocess.run(['git','config','user.email', '"space.punk3r@gmail.com"'])
+  subprocess.run(['git','config','user.name', '"iwantthatresult"'])
+  subprocess.run(['git', 'commit', '-m', '"adding new song"'])
+  subprocess.run(['git' ,'push',  'https://iwantthatresult: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@github.com/iwantthatresult/ytdwnloader.git'])
+  os.chdir(savecwd)
 
 
 
@@ -50,13 +73,16 @@ def youtube2mp3 (url,outdir,fname):
     ##@ Check success of download
     if new_file.exists():
         print(f'{yt.title} has been successfully downloaded.')
-        fname=cwd+"/audio/"+"/"+fname+'/'+fname+'.mp3'
+        idsave=fname
+        fnamesave=fname+'.mp3'
+        fname=cwd+"/audio/"+fname+'/'+fname+'.mp3'
         out=cwd+'/audio/'
         subprocess.run(["spleeter", "separate", fname ,"-p" "spleeter:5stems", "-c", "mp3", "-o", out], capture_output=True)
         audio_file = open(fname, 'rb')
         audio_bytes = audio_file.read()
         st.audio(audio_bytes, format='mp3')
         user_input=st.text_input(fname)
+        save(idsave)
     else:
         print(f'ERROR: {yt.title}could not be downloaded!')
     
@@ -66,8 +92,10 @@ def audiodl(id):
   print(id)
   for i in range(0,len(id)):
     url='www.youtube.com/watch?v='+id[i]
-    youtube2mp3(url,cwd+'/audio/'+str(id[i])+"",str(id[i]))
+    youtube2mp3(url,cwd+'/audio/'+str(id[i])+"",str(id[i]))  
 
-user_input = st.text_input("label goes here", '')
-audiodl('vtSs5rucN_8')
+user_input1 = st.text_input("insère ton lien poto", '')
+while len(user_input1)==0:
+  time.sleep(5)
+a=audiodl('vtSs5rucN_8 cpzZiGm6NdM')
 user_input=st.text_input(cwd)
