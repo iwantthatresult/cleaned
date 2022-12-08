@@ -11,7 +11,9 @@ import sys
 import subprocess
 import pkg_resources
 
-required  = {'pytube', 'gdown', 'spleeter','ffmpeg','streamlit'} 
+subprocess.run([sys.executable,"-m", 'apt' ,'install' ,'ffmpeg'])
+
+required  = {'pytube', 'gdown','spleeter','streamlit'} 
 installed = {pkg.key for pkg in pkg_resources.working_set}
 missing   = required - installed
 
@@ -20,12 +22,17 @@ if missing:
     subprocess.check_call([sys.executable, '-m', 'pip', 'install', *missing])
 
 import spleeter
+import os
+
 import tqdm
 from pytube import YouTube
 import os
 from pathlib import Path
 import subprocess
 import streamlit as st
+
+cwd=str(os.getcwd())
+
 
 
 def youtube2mp3 (url,outdir,fname):
@@ -43,24 +50,20 @@ def youtube2mp3 (url,outdir,fname):
     ##@ Check success of download
     if new_file.exists():
         print(f'{yt.title} has been successfully downloaded.')
-        fname="/content/audio/"+"/"+fname+'/'+fname+'.mp3'
-        subprocess.run(["spleeter", "separate", fname ,"-p" "spleeter:5stems", "-c", "mp3", "-o", "/content/audio/"], capture_output=True)
+        fname=cwd+"/audio/"+"/"+fname+'/'+fname+'.mp3'
+        out=cwd+'/audio/'
+        subprocess.run(["spleeter", "separate", fname ,"-p" "spleeter:5stems", "-c", "mp3", "-o", out], capture_output=True)
     else:
         print(f'ERROR: {yt.title}could not be downloaded!')
-
-    return yt.title
     
 
 def audiodl(id):
-  title=[]
-  id=id.split(' ')
+  id=str.split(id)
   print(id)
   for i in range(0,len(id)):
     url='www.youtube.com/watch?v='+id[i]
-    a=youtube2mp3(url,'/content/audio/'+str(id[i])+"",id[i])
-    title.append(a)
-  return ' '.join(title)
+    youtube2mp3(url,cwd+'/audio/'+str(id[i])+"",str(id[i]))
 
-user_input = st.text_input("ça commence", '')
-a=audiodl(user_input)
-user_input=st.text_input(a)
+user_input = st.text_input("label goes here", '')
+audiodl('vtSs5rucN_8')
+user_input=st.text_input(cwd)
