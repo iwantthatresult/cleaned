@@ -53,7 +53,7 @@ def youtube2mp3 (url,outdir,fname):
 
 def audiodl(id):
   title=[]
-  id=str.split(id)
+  id=id.split(' ')
   print(id)
   for i in range(0,len(id)):
     url='www.youtube.com/watch?v='+id[i]
