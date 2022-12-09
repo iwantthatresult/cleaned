@@ -7,13 +7,16 @@ Original file is located at
     https://colab.research.google.com/drive/1lGUXy3f4V4dI1-cgMaIW_WVSp_LWXzxI
 """
 
+
+
+
 import sys
 import subprocess
 import pkg_resources
 
-subprocess.run([sys.executable,"-m", 'apt' ,'install' ,'ffmpeg'])
+subprocess.run([sys.executable,"-m", 'apt' ,'install' ,'ffmpeg','google-api-python-client', 'google-auth-httplib2','google-auth-oauthlib'])
 
-required  = {'pytube', 'gdown','spleeter','streamlit','pydrive'} 
+required  = {'pytube', 'gdown','spleeter','streamlit','pydrive','pygithub'} 
 installed = {pkg.key for pkg in pkg_resources.working_set}
 missing   = required - installed
 
@@ -25,34 +28,77 @@ if missing:
 
 import spleeter
 import os
+
+import tqdm
 from pytube import YouTube
 import os
 from pathlib import Path
 import subprocess
 import streamlit as st
+from pydrive.auth import GoogleAuth
+from pydrive.drive import GoogleDrive
+from zipfile import ZipFile
 import os
 from os.path import basename
 import time
-  
+import base64
+from github import Github
+from zipfile import ZipFile
+import os
+from os.path import basename
+
+ACCESS_TOKEN = "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"
+INTERNAL_FILE = "/content/vocals.mp3"
+FOLDER_EMPL_IN_GIT = "data/"
+FULL_NAME='TEST22'
+
+
+def add_or_update_in_git(initial_file,fullname):
+    g = Github("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")
+
+    repo = g.get_user().get_repo("ytdlspleeter")
+    all_files = []
+    contents = repo.get_contents("")
+    print(contents)
+
+    while contents:
+        file_content = contents.pop(0)
+        if file_content.type == "dir":
+            contents.extend(repo.get_contents(file_content.path))
+        else:
+            file = file_content
+            all_files.append(str(file).replace('ContentFile(path="', '').replace('")', ''))
+
+    with open(initial_file, 'rb',) as file:
+      bytes = file.read()
+      content = base64.b64encode(bytes)
+
+    # Upload to github
+    if 'data/'+fullname+'.txt' in all_files:
+        contents = repo.get_contents('data/'+fullname+'.txt')
+        repo.update_file(contents.path, "updating files "+fullname , content, contents.sha, branch="main")
+        return fullname + ' UPDATED'
+    else:
+        repo.create_file('data/'+fullname+'.txt', "creating files " +fullname, content, branch="main")
+        return fullname + ' CREATED'
+
+
+
   
 cwd=str(os.getcwd())
 
-subprocess.run(["git", "clone", "https://github.com/iwantthatresult/ytdlspleeter.git"])
-gitdir=cwd+'ytdlspleeter'
-
 def save(fname):
   savecwd=cwd
-  os.chdir(cwd +'/ytdlspleeter')
-  subprocess.run(['git','remote', 'set-url', 'origin', 'https://iwantthatresult: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@github.com/iwantthatresult/ytdlspleeter.git'])
-  subprocess.run(['mv' ,savecwd+'/audio/'+fname, './data'])
-  subprocess.run(['git','add', './data/'+fname])
-  subprocess.run(['git','config','user.email', '"space.punk3r@gmail.com"'])
-  subprocess.run(['git','config','user.name', '"iwantthatresult"'])
-  subprocess.run(['git', 'commit', '-m', '"adding new song"'])
-  subprocess.run(['git' ,'push',  'https://iwantthatresult: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@github.com/iwantthatresult/ytdlspleeter.git'])
-  os.chdir(savecwd)
+  dirName=cwd+'/audio/'+fname
+  with ZipFile(fname+'.zip', 'w') as zipObj:
+    for folderName, subfolders, filenames in os.walk(dirName):
+      for filename in filenames:
+        filePath = os.path.join(folderName, filename)
+        zipObj.write(filePath, basename(filePath))
+  add_or_update_in_git(fname+'.zip',fname)
 
-    
+
+
 def youtube2mp3 (url,outdir,fname):
     # url input from user
     yt = YouTube(url)
