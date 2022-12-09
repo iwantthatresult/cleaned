@@ -14,7 +14,7 @@ import sys
 import subprocess
 import pkg_resources
 
-subprocess.run([sys.executable,"-m", 'apt' ,'install' ,'ffmpeg','google-api-python-client', 'google-auth-httplib2','google-auth-oauthlib'])
+subprocess.run([sys.executable,"-m", 'apt' ,'install' ,'ffmpeg'])
 
 required  = {'pytube', 'gdown','spleeter','streamlit','pydrive','pygithub'} 
 installed = {pkg.key for pkg in pkg_resources.working_set}
@@ -35,8 +35,6 @@ import os
 from pathlib import Path
 import subprocess
 import streamlit as st
-from pydrive.auth import GoogleAuth
-from pydrive.drive import GoogleDrive
 from zipfile import ZipFile
 import os
 from os.path import basename
