@@ -38,7 +38,7 @@ user_input4 = st.text_input("ok1", '')
 
 cwd=str(os.getcwd())
 user_input2 = st.text_input("ok2", '')
-subprocess.run(["git", "clone", "https://github.com/iwantthatresult/ytdlspleeter.git"])
+#subprocess.run(["git", "clone", "https://github.com/iwantthatresult/ytdlspleeter.git"])
 gitdir=cwd+'ytdlspleeter'
 user_input3 = st.text_input("ok3", '')
 def save(fname,TOKEN):
