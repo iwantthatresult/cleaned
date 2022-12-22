@@ -5,5 +5,4 @@ pathlib
 librosa
 numpy
 pandas
-io
 libsndfile1-dev
