@@ -2,7 +2,7 @@ import sys
 import subprocess
 import pkg_resources
 
-subprocess.run([sys.executable,"-m", 'apt' ,'install' ,'ffmpeg',])
+subprocess.run([sys.executable,"-m", 'apt' ,'install' ,'ffmpeg','librosa'])
 
 required  = {'pytube', 'gdown','spleeter','streamlit','pydrive','librosa'} 
 installed = {pkg.key for pkg in pkg_resources.working_set}
