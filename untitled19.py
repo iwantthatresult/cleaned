@@ -26,8 +26,11 @@ import io
 files = os.listdir()
 
 # Print the files
+savedfiles=''
 for file in files:
-    print(file)
+    savedfiles+=str(file)
+    
+user_input1 = st.text_input(savedfiles, '')
 
 
 #subprocess.run([sys.executable,'-m', 'pip', 'install','ffmpeg','librosa','pytube', 'gdown','spleeter','streamlit','pydrive'])
