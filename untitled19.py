@@ -22,6 +22,14 @@ from PIL import Image
 import io
 
 
+# Get the list of all files in the directory
+files = os.listdir()
+
+# Print the files
+for file in files:
+    print(file)
+
+
 #subprocess.run([sys.executable,'-m', 'pip', 'install','ffmpeg','librosa','pytube', 'gdown','spleeter','streamlit','pydrive'])
 #subprocess.run([sys.executable,"-m", 'apt' ,'install' ,'ffmpeg','librosa','pytube', 'gdown','spleeter','streamlit','pydrive'])
 
