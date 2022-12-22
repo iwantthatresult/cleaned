@@ -2,7 +2,6 @@ spleeter
 tqdm
 pytube
 pathlib
-zipfile 
 time
 librosa
 numpy
