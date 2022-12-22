@@ -30,7 +30,7 @@ savedfiles=''
 for file in files:
     savedfiles+=str(file)
     
-user_input1 = st.text_input(savedfiles, '')
+user_input5 = st.text_input(savedfiles, '')
 
 
 #subprocess.run([sys.executable,'-m', 'pip', 'install','ffmpeg','librosa','pytube', 'gdown','spleeter','streamlit','pydrive'])
@@ -45,7 +45,7 @@ user_input1 = st.text_input(savedfiles, '')
  #   subprocess.check_call([sys.executable, '-m', 'pip', 'install', *missing])
 
 cwd=str(os.getcwd())
-user_input=st.text_input(cwd)
+user_input6=st.text_input(cwd)
 #subprocess.run(["git", "clone", "https://github.com/iwantthatresult/ytdlspleeter.git"])
 gitdir=cwd+'ytdlspleeter'
 def save(fname,TOKEN):
@@ -201,9 +201,9 @@ def audiodl(id):
   id=str.split(id)
   print(id)
   Token=id[0]
-  user_input=st.text_input('ok')
+  user_input10=st.text_input('ok')
   for i in range(1,len(id)):
-    user_input=st.text_input('ok2')
+    user_input15=st.text_input('ok2')
     url='www.youtube.com/watch?v='+id[i]
     youtube2mp3(url,cwd+'/audio/'+str(id[i])+"",str(id[i]),Token)  
 
