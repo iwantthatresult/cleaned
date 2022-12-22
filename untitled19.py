@@ -39,20 +39,9 @@ from PIL import Image
 import io
 
 cwd=str(os.getcwd())
-# Use the "ls" command to get a list of files in the directory
-output = subprocess.check_output(["ls", cwd])
-
-# Split the output into a list of filenames
-filenames = output.decode().strip().split("\n")
-
-# Print the list of filenames
-print(filenames)
-
 print('ça passe')
 subprocess.run(["git", "clone", "https://github.com/iwantthatresult/ytdlspleeter.git"])
 gitdir=cwd+'ytdlspleeter'
-
-
 def save(fname,TOKEN):
   savecwd=cwd
   os.chdir(cwd +'/ytdlspleeter')
