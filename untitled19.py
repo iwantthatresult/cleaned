@@ -26,11 +26,21 @@ import io
 files = os.listdir()
 import shutil
 
+import os
+
+
 # Specify the name of the repository to delete
 repository_name = "ytdlspleeter"
 
-# Delete the repository
-shutil.rmtree(repository_name)
+# Check if the repository exists
+if os.path.exists(repository_name):
+    # Delete the repository
+    shutil.rmtree(repository_name)
+else:
+    print("Repository does not exist")
+
+
+
 
 # Print the files
 savedfiles=''
