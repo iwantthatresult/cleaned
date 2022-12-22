@@ -10,9 +10,9 @@ required  = {'pytube', 'gdown','spleeter','streamlit','pydrive','librosa'}
 installed = {pkg.key for pkg in pkg_resources.working_set}
 missing   = required - installed
 
-if missing:
+#if missing:
     # implement pip as a subprocess:
-    subprocess.check_call([sys.executable, '-m', 'pip', 'install', *missing])
+    #subprocess.check_call([sys.executable, '-m', 'pip', 'install', *missing])
 
 
 
