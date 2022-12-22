@@ -46,7 +46,7 @@ user_input1 = st.text_input(savedfiles, '')
 
 cwd=str(os.getcwd())
 user_input=st.text_input(cwd)
-subprocess.run(["git", "clone", "https://github.com/iwantthatresult/ytdlspleeter.git"])
+#subprocess.run(["git", "clone", "https://github.com/iwantthatresult/ytdlspleeter.git"])
 gitdir=cwd+'ytdlspleeter'
 def save(fname,TOKEN):
   savecwd=cwd
