@@ -2,17 +2,6 @@ import sys
 import subprocess
 import pkg_resources
 
-# Use the "ls" command to get a list of files in the directory
-output = subprocess.check_output(["ls", directory])
-
-# Split the output into a list of filenames
-filenames = output.decode().strip().split("\n")
-
-# Print the list of filenames
-print(filenames)
-
-print('ça passe')
-
 
 #subprocess.run([sys.executable,'-m', 'pip', 'install','ffmpeg','librosa','pytube', 'gdown','spleeter','streamlit','pydrive'])
 subprocess.run([sys.executable,'-ls'])
@@ -50,6 +39,16 @@ from PIL import Image
 import io
 
 cwd=str(os.getcwd())
+# Use the "ls" command to get a list of files in the directory
+output = subprocess.check_output(["ls", cwd])
+
+# Split the output into a list of filenames
+filenames = output.decode().strip().split("\n")
+
+# Print the list of filenames
+print(filenames)
+
+print('ça passe')
 subprocess.run(["git", "clone", "https://github.com/iwantthatresult/ytdlspleeter.git"])
 gitdir=cwd+'ytdlspleeter'
 
