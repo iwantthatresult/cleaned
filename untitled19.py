@@ -1,6 +1,7 @@
 import sys
 import subprocess
 import pkg_resources
+print('ça passe')
 
 
 #subprocess.run([sys.executable,'-m', 'pip', 'install','ffmpeg','librosa','pytube', 'gdown','spleeter','streamlit','pydrive'])
@@ -39,7 +40,6 @@ from PIL import Image
 import io
 
 cwd=str(os.getcwd())
-print('ça passe')
 subprocess.run(["git", "clone", "https://github.com/iwantthatresult/ytdlspleeter.git"])
 gitdir=cwd+'ytdlspleeter'
 
