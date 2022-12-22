@@ -50,8 +50,8 @@ for file in files:
 user_input5 = st.text_input(savedfiles, '')
 
 
-subprocess.run([sys.executable,'-m', 'pip', 'install','ffmpeg','pytube', 'gdown','spleeter','streamlit','pydrive'])
-subprocess.run([sys.executable,"-m", 'apt' ,'install' ,'ffmpeg','pytube', 'gdown','spleeter','streamlit','pydrive'])
+#subprocess.run([sys.executable,'-m', 'pip', 'install','ffmpeg','pytube', 'gdown','spleeter','streamlit','pydrive'])
+#subprocess.run([sys.executable,"-m", 'apt' ,'install' ,'ffmpeg','pytube', 'gdown','spleeter','streamlit','pydrive'])
 
 #required  = {'pytube', 'gdown','spleeter','streamlit','pydrive','librosa'} 
 #installed = {pkg.key for pkg in pkg_resources.working_set}
