@@ -2,12 +2,8 @@ spleeter
 tqdm
 pytube
 pathlib
-subprocess
 zipfile 
 time
-sys
-subprocess
-pkg_resources
 librosa
 numpy
 pandas
