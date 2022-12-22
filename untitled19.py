@@ -24,6 +24,13 @@ import io
 
 # Get the list of all files in the directory
 files = os.listdir()
+import shutil
+
+# Specify the name of the repository to delete
+repository_name = "ytdlspleeter"
+
+# Delete the repository
+shutil.rmtree(repository_name)
 
 # Print the files
 savedfiles=''
