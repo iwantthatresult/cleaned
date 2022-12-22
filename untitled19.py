@@ -2,7 +2,7 @@ import sys
 import subprocess
 import pkg_resources
 
-subprocess.run([sys.executable,'-m', 'pip', 'install', '--upgrade', 'pip','ffmpeg','librosa','pytube', 'gdown','spleeter','streamlit','pydrive'])
+subprocess.run([sys.executable,'-m', 'pip', 'install','ffmpeg','librosa','pytube', 'gdown','spleeter','streamlit','pydrive'])
 
 subprocess.run([sys.executable,"-m", 'apt' ,'install' ,'ffmpeg','librosa','pytube', 'gdown','spleeter','streamlit','pydrive'])
 
