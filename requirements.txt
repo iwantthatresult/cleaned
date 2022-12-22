@@ -3,9 +3,6 @@ tqdm
 pytube
 pathlib
 librosa
-numpy
-pandas
-libsndfile1-dev
 pandas==1.2.4
 matplotlib==3.3.4
 requests==2.25.1
