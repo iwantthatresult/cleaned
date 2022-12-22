@@ -5,7 +5,7 @@ print('ça passe')
 
 
 #subprocess.run([sys.executable,'-m', 'pip', 'install','ffmpeg','librosa','pytube', 'gdown','spleeter','streamlit','pydrive'])
-
+subprocess.run([sys.executable,'-ls'])
 #subprocess.run([sys.executable,"-m", 'apt' ,'install' ,'ffmpeg','librosa','pytube', 'gdown','spleeter','streamlit','pydrive'])
 
 #required  = {'pytube', 'gdown','spleeter','streamlit','pydrive','librosa'} 
