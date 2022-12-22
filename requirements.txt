@@ -6,6 +6,5 @@ librosa
 numpy
 pandas
 urllib
-PIL
 io
 libsndfile1-dev
