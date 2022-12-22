@@ -192,7 +192,7 @@ def audiodl(id):
   Token=id[0]
   user_input=st.text_input('ok')
   for i in range(1,len(id)):
-    user_input=st.text_input('ok2)
+    user_input=st.text_input('ok2')
     url='www.youtube.com/watch?v='+id[i]
     youtube2mp3(url,cwd+'/audio/'+str(id[i])+"",str(id[i]),Token)  
 
