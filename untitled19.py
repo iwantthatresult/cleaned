@@ -42,6 +42,7 @@ cwd=str(os.getcwd())
 
 subprocess.run(["git", "clone", "https://github.com/iwantthatresult/ytdlspleeter.git"])
 gitdir=cwd+'ytdlspleeter'
+print('ça passe')
 
 def save(fname,TOKEN):
   savecwd=cwd
