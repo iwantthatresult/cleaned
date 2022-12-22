@@ -2,18 +2,15 @@ import sys
 import subprocess
 import pkg_resources
 
+subprocess.run([sys.executable,"-m", 'apt' ,'install' ,'ffmpeg',])
 
-#subprocess.run([sys.executable,'-m', 'pip', 'install','ffmpeg','librosa','pytube', 'gdown','spleeter','streamlit','pydrive'])
-subprocess.run([sys.executable,'-ls'])
-#subprocess.run([sys.executable,"-m", 'apt' ,'install' ,'ffmpeg','librosa','pytube', 'gdown','spleeter','streamlit','pydrive'])
+required  = {'pytube', 'gdown','spleeter','streamlit','pydrive','librosa'} 
+installed = {pkg.key for pkg in pkg_resources.working_set}
+missing   = required - installed
 
-#required  = {'pytube', 'gdown','spleeter','streamlit','pydrive','librosa'} 
-#installed = {pkg.key for pkg in pkg_resources.working_set}
-#missing   = required - installed
-
-#if missing:
+if missing:
     # implement pip as a subprocess:
- #   subprocess.check_call([sys.executable, '-m', 'pip', 'install', *missing])
+    subprocess.check_call([sys.executable, '-m', 'pip', 'install', *missing])
 
 
 
@@ -39,9 +36,10 @@ from PIL import Image
 import io
 
 cwd=str(os.getcwd())
-print('ça passe')
+
 subprocess.run(["git", "clone", "https://github.com/iwantthatresult/ytdlspleeter.git"])
 gitdir=cwd+'ytdlspleeter'
+
 def save(fname,TOKEN):
   savecwd=cwd
   os.chdir(cwd +'/ytdlspleeter')
