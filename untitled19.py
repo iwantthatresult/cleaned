@@ -39,10 +39,10 @@ from PIL import Image
 import io
 
 cwd=str(os.getcwd())
-
+print('ça passe')
 subprocess.run(["git", "clone", "https://github.com/iwantthatresult/ytdlspleeter.git"])
 gitdir=cwd+'ytdlspleeter'
-print('ça passe')
+
 
 def save(fname,TOKEN):
   savecwd=cwd
