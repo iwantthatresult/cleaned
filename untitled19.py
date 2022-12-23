@@ -202,11 +202,11 @@ def youtube2mp3 (url,outdir,fname,Token):
     if new_file.exists():
         print(f'{yt.title} has been successfully downloaded.')
         idsave=fname
-        fnamesave=fname+'.mp3'
+        fnamesave=fname+'.wav'
           #--------------------------------------------------
         fext=cwd+"/audio/"+fname+'/'
           #--------------------------------------------------
-        fname=cwd+"/audio/"+fname+'/'+fname+'.mp3'
+        fname=cwd+"/audio/"+fname+'/'+fname+'.wav'
         out=cwd+'/audio/'
         subprocess.run(["spleeter", "separate", fname ,"-p" "spleeter:5stems", "-c", "wav", "-o", out], capture_output=True)
 
