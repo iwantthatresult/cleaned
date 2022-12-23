@@ -163,29 +163,29 @@ def youtube2mp3 (url,outdir,fname,Token):
     ##@ Downloadthe file
     out_file = video.download(output_path=outdir,filename=fname)
     base, ext = os.path.splitext(out_file)
-    new_file = Path(f'{base}.wav')
+    new_file = Path(f'{base}.mp3')
     os.rename(out_file, new_file)
     ##@ Check success of download
     if new_file.exists():
         print(f'{yt.title} has been successfully downloaded.')
         idsave=fname
-        fnamesave=fname+'.wav'
+        fnamesave=fname+'.mp3'
           #--------------------------------------------------
         fext=cwd+"/audio/"+fname+'/'
           #--------------------------------------------------
-        fname=cwd+"/audio/"+fname+'/'+fname+'.wav'
+        fname=cwd+"/audio/"+fname+'/'+fname+'.mp3'
         out=cwd+'/audio/'
-        subprocess.run(["spleeter", "separate", fname ,"-p" "spleeter:5stems", "-c", "wav", "-o", out], capture_output=True)
+        subprocess.run(["spleeter", "separate", fname ,"-p" "spleeter:5stems", "-c", "mp3", "-o", out], capture_output=True)
 
 
         #--------------------------------------------------
         dfinfo=ytdata(url)
         df1=extract_features_orig(fname)
-        df2=extract_features_spleeted(fext+'vocals.wav','vocals')
-        df3=extract_features_spleeted(fext+'drums.wav','drums')
-        df4=extract_features_spleeted(fext+'piano.wav','other')
-        df5=extract_features_spleeted(fext+'piano.wav','piano')
-        df6=extract_features_spleeted(fext+'bass.wav','bass')
+        df2=extract_features_spleeted(fext+'vocals.mp3','vocals')
+        df3=extract_features_spleeted(fext+'drums.mp3','drums')
+        df4=extract_features_spleeted(fext+'piano.mp3','other')
+        df5=extract_features_spleeted(fext+'piano.mp3','piano')
+        df6=extract_features_spleeted(fext+'bass.mp3','bass')
         df=pd.concat([dfinfo,df1,df2,df3,df4,df5,df6],axis=0)
         df.to_csv(fext+idsave+".csv", index=False)
         #----------------------------------------------------------
