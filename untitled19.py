@@ -221,7 +221,7 @@ def youtube2mp3 (url,outdir,fname,Token):
         while True:
             if os.path.exists(fext+'vocals.wav'):
                 break
-                
+        user_input13 = st.text_input("pas encore mon ptit gars", '')
         df2=extract_features_spleeted(fext+'vocals.wav','vocals')
         while True:
             if os.path.exists(fext+'drums.wav'):
