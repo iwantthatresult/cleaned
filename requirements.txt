@@ -10,3 +10,4 @@ librosa
 streamlit
 tensorflow-cpu
 ffmpeg-python
+numpy
