@@ -1,6 +1,7 @@
 import sys
 import subprocess
 import pkg_resources
+import streamlit as st
 
 subprocess.run([sys.executable,"-m", 'apt' ,'install' ,'ffmpeg','google-api-python-client', 'google-auth-httplib2','google-auth-oauthlib','streamlit','librosa'])
 subprocess.run([sys.executable,"streamlit", "run", "app.py", "--browser.gatherUsageStats","False"])
