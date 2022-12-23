@@ -218,8 +218,7 @@ def youtube2mp3 (url,outdir,fname,Token):
         #--------------------------------------------------
         dfinfo=ytdata(url)
          #df1=extract_features_orig(fname)
-        import os
-        directory = '/path/to/directory'
+        directory = out
         with os.scandir(directory) as entries:
             for entry in entries:
                 if entry.is_file():
