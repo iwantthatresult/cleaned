@@ -22,6 +22,7 @@ from PIL import Image
 import io
 subprocess.run([sys.executable,'-m','sudo', 'apt', 'install', 'ffmpeg'])
 
+subprocess.run([sys.executable,'apt''-get' 'install' 'ffmpeg'])
 
 
 # Get the list of all files in the directory
