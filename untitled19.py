@@ -180,7 +180,6 @@ def youtube2mp3 (url,outdir,fname,Token):
 
         #--------------------------------------------------
         dfinfo=ytdata(url)
-        import os
         directory = 'fext'
         with os.scandir(directory) as entries:
             for entry in entries:
