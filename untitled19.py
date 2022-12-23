@@ -218,10 +218,22 @@ def youtube2mp3 (url,outdir,fname,Token):
         #--------------------------------------------------
         dfinfo=ytdata(url)
          #df1=extract_features_orig(fname)
+        while True:
+            if not os.path.exists(fext+'vocals.wav'):
+                break
+                
         df2=extract_features_spleeted(fext+'vocals.wav','vocals')
+        while True:
+            if not os.path.exists(fext+'drums.wav'):
+                break
         df3=extract_features_spleeted(fext+'drums.wav','drums')
+        while True:
+            if not os.path.exists(fext+'piano.wav'):
+                break
         df4=extract_features_spleeted(fext+'piano.wav','other')
-        df5=extract_features_spleeted(fext+'piano.wav','piano')
+        while True:
+            if not os.path.exists(fext+'bass.wav'):
+                break
         df6=extract_features_spleeted(fext+'bass.wav','bass')
         df=pd.concat([dfinfo#,df1
                       ,df2,df3,df4,df5,df6],axis=0)
