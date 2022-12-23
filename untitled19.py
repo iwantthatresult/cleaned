@@ -11,7 +11,7 @@ missing   = required - installed
 
 if missing:
     # implement pip as a subprocess:
-    subprocess.check_call([sys.executable, '-m', 'pip', 'install', *missing,'streamlit'])
+    subprocess.check_call([sys.executable, '-m', 'pip', 'install', *missing,'streamlit','numpy'])
 
 
 
@@ -23,9 +23,7 @@ from pytube import YouTube
 import os
 from pathlib import Path
 import subprocess
-from zipfile import ZipFile
 import os
-from os.path import basename
 import time
 
 
