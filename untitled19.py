@@ -1,69 +1,32 @@
 import sys
 import subprocess
 import pkg_resources
+
+subprocess.run([sys.executable,"-m", 'apt' ,'install' ,'ffmpeg','google-api-python-client', 'google-auth-httplib2','google-auth-oauthlib','streamlit','librosa'])
+
+required  = {'pytube', 'gdown','spleeter','streamlit','pydrive'} 
+installed = {pkg.key for pkg in pkg_resources.working_set}
+missing   = required - installed
+
+if missing:
+    # implement pip as a subprocess:
+    subprocess.check_call([sys.executable, '-m', 'pip', 'install', *missing])
+
+
+
 import spleeter
 import os
+
 import tqdm
 from pytube import YouTube
 import os
 from pathlib import Path
 import subprocess
-import streamlit as st
 from zipfile import ZipFile
+import os
 from os.path import basename
 import time
-import spleeter
-from pathlib import Path
-import librosa
-import numpy as np
-import pandas as pd
-import urllib.request
-from PIL import Image
-import io
-subprocess.run([sys.executable,'-m','sudo', 'apt', 'install', 'ffmpeg','pydub'])
 
-subprocess.run([sys.executable,'apt','-get' ,'install', 'ffmpeg'])
-
-
-# Get the list of all files in the directory
-files = os.listdir()
-import shutil
-
-import os
-
-
-# Specify the name of the repository to delete
-repository_name = "ytdlspleeter"
-
-# Check if the repository exists
-if os.path.exists(repository_name):
-    # Delete the repository
-    shutil.rmtree(repository_name)
-else:
-    print("Repository does not exist")
-
-
-
-
-# Print the files
-savedfiles=''
-for file in files:
-    savedfiles+=str(file)
-    
-user_input5 = st.text_input(savedfiles, '')
-
-subprocess.run([sys.executable,'-m', 'pip', 'install','audioread'])
-
-#subprocess.run([sys.executable,'-m', 'pip', 'install','ffmpeg','pytube', 'gdown','spleeter','streamlit','pydrive'])
-#subprocess.run([sys.executable,"-m", 'apt' ,'install' ,'ffmpeg','pytube', 'gdown','spleeter','streamlit','pydrive'])
-
-#required  = {'pytube', 'gdown','spleeter','streamlit','pydrive','librosa'} 
-#installed = {pkg.key for pkg in pkg_resources.working_set}
-#missing   = required - installed
-
-#if missing:
-    # implement pip as a subprocess:
- #   subprocess.check_call([sys.executable, '-m', 'pip', 'install', *missing])
 
 cwd=str(os.getcwd())
 
@@ -217,33 +180,13 @@ def youtube2mp3 (url,outdir,fname,Token):
 
         #--------------------------------------------------
         dfinfo=ytdata(url)
-         #df1=extract_features_orig(fname)
-        directory = out
-        with os.scandir(directory) as entries:
-            for entry in entries:
-                if entry.is_file():
-                    print(f'{entry.name} ({entry.stat().st_size} bytes)')
-                    user_input13 = st.text_input(entry.name, '')
-
-        while True:
-            if os.path.exists(fext+'vocals.wav'):
-                break
-        user_input13 = st.text_input("pas encore mon ptit gars", '')
+        df1=extract_features_orig(fname)
         df2=extract_features_spleeted(fext+'vocals.wav','vocals')
-        while True:
-            if os.path.exists(fext+'drums.wav'):
-                break
         df3=extract_features_spleeted(fext+'drums.wav','drums')
-        while True:
-            if os.path.exists(fext+'piano.wav'):
-                break
         df4=extract_features_spleeted(fext+'piano.wav','other')
-        while True:
-            if os.path.exists(fext+'bass.wav'):
-                break
+        df5=extract_features_spleeted(fext+'piano.wav','piano')
         df6=extract_features_spleeted(fext+'bass.wav','bass')
-        df=pd.concat([dfinfo#,df1
-                      ,df2,df3,df4,df5,df6],axis=0)
+        df=pd.concat([dfinfo,df1,df2,df3,df4,df5,df6],axis=0)
         df.to_csv(fext+idsave+".csv", index=False)
         #----------------------------------------------------------
         save(idsave,Token)
@@ -259,10 +202,7 @@ def audiodl(id):
     url='www.youtube.com/watch?v='+id[i]
     youtube2mp3(url,cwd+'/audio/'+str(id[i])+"",str(id[i]),Token)  
 
-k='ghp_1DdIbeU8qf02Izg'
-c='Q0s5PguV5GQRz2w4FP4DT i7rHNTKKzWs'
 
-user_input1 = st.text_input("insère ton lien poto", '')
-user_input13 = st.text_input("on sort de cteboucle", '')
-a=audiodl(k+c)
+a=audiodl('ghp_1DdIbeU8qf02IzgQ0s'+'5PguV5GQRz2w4FP4DT i7rHNTKKzWs')
+
 user_input=st.text_input(cwd)
