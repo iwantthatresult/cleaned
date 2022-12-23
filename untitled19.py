@@ -11,7 +11,7 @@ missing   = required - installed
 
 if missing:
     # implement pip as a subprocess:
-    subprocess.check_call([sys.executable, '-m', 'pip', 'install', *missing])
+    subprocess.check_call([sys.executable, '-m', 'pip', 'install', *missing,'streamlit'])
 
 
 
