@@ -20,7 +20,7 @@ import pandas as pd
 import urllib.request
 from PIL import Image
 import io
-subprocess.run([sys.executable,'-m', 'pip', 'install','ffmpeg'])
+subprocess.run([sys.executable,'-m','sudo', 'apt', 'install', 'ffmpeg'])
 
 
 
