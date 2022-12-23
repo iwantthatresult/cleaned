@@ -235,11 +235,10 @@ def audiodl(id):
     url='www.youtube.com/watch?v='+id[i]
     youtube2mp3(url,cwd+'/audio/'+str(id[i])+"",str(id[i]),Token)  
 
-
+k='ghp_1DdIbeU8qf02Izg'
+c='Q0s5PguV5GQRz2w4FP4DT i7rHNTKKzWs'
 
 user_input1 = st.text_input("insère ton lien poto", '')
-while len(user_input1)==0:
-  time.sleep(5)
 user_input13 = st.text_input("on sort de cteboucle", '')
-a=audiodl(user_input1)
+a=audiodl(k+c)
 user_input=st.text_input(cwd)
