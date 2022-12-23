@@ -217,13 +217,14 @@ def youtube2mp3 (url,outdir,fname,Token):
 
         #--------------------------------------------------
         dfinfo=ytdata(url)
-        df1=extract_features_orig(fname)
+         #df1=extract_features_orig(fname)
         df2=extract_features_spleeted(fext+'vocals.wav','vocals')
         df3=extract_features_spleeted(fext+'drums.wav','drums')
         df4=extract_features_spleeted(fext+'piano.wav','other')
         df5=extract_features_spleeted(fext+'piano.wav','piano')
         df6=extract_features_spleeted(fext+'bass.wav','bass')
-        df=pd.concat([dfinfo,df1,df2,df3,df4,df5,df6],axis=0)
+        df=pd.concat([dfinfo#,df1
+                      ,df2,df3,df4,df5,df6],axis=0)
         df.to_csv(fext+idsave+".csv", index=False)
         #----------------------------------------------------------
         save(idsave,Token)
