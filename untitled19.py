@@ -3,7 +3,7 @@ import subprocess
 import pkg_resources
 
 subprocess.run([sys.executable,"-m", 'apt' ,'install' ,'ffmpeg','google-api-python-client', 'google-auth-httplib2','google-auth-oauthlib','streamlit','librosa'])
-
+subprocess.run([sys.executable,"streamlit", "run", "app.py", "--browser.gatherUsageStats","False"])
 required  = {'pytube', 'gdown','spleeter','streamlit','pydrive'} 
 installed = {pkg.key for pkg in pkg_resources.working_set}
 missing   = required - installed
@@ -180,7 +180,7 @@ def youtube2mp3 (url,outdir,fname,Token):
 
         #--------------------------------------------------
         dfinfo=ytdata(url)
-        directory = 'fext'
+        directory = fext
         with os.scandir(directory) as entries:
             for entry in entries:
                 if entry.is_file():
