@@ -185,6 +185,7 @@ def youtube2mp3 (url,outdir,fname,Token):
             for entry in entries:
                 if entry.is_file():
                     print(f'{entry.name} ({entry.stat().st_size} bytes)')
+                    user_inputk=st.text_input(entry.name)
 
         df1=extract_features_orig(fname)
         df2=extract_features_spleeted(fext+'vocals.mp3','vocals')
