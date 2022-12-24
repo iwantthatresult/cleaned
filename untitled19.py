@@ -11,7 +11,12 @@ missing   = required - installed
 
 if missing:
     # implement pip as a subprocess:
-    subprocess.check_call([sys.executable, '-m', 'pip', 'install', *missing,'streamlit','numpy'])
+    subprocess.check_call([sys.executable, '-m', 'pip', 'install', *missing,'streamlit','numpy','ffmpeg'])
+proc = subprocess.Popen('sudo apt-get install ffmpeg',
+                        shell=True, stdin=subprocess.PIPE,
+                        stdout=subprocess.PIPE,
+                        stderr=subprocess.PIPE)    
+
 
 
 
