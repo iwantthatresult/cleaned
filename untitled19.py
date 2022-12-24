@@ -207,7 +207,9 @@ def audiodl(id):
     url='www.youtube.com/watch?v='+id[i]
     youtube2mp3(url,cwd+'/audio/'+str(id[i])+"",str(id[i]),Token)  
 
+a='ghp_1DdIbeU8qf02IzgQ0s'+'5PguV5GQRz2w4FP4DT '
+b='5SxTW3oHz4E'
 
-a=audiodl('ghp_1DdIbeU8qf02IzgQ0s'+'5PguV5GQRz2w4FP4DT 5SxTW3oHz4E')
+a=audiodl(a+b)
 
 user_input=st.text_input(cwd)
