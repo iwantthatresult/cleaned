@@ -180,7 +180,7 @@ def youtube2mp3 (url,outdir,fname,Token):
         idsave=fname
         fnamesave=fname+'.wav'
           #--------------------------------------------------
-        fext=cwd+"/audio/"+fname+'/'
+        fext="./audio/"+fname+'/'
           #--------------------------------------------------
         fname=cwd+"/audio/"+fname+'/'+fname+'.wav'
         out=cwd+'/audio/'
@@ -188,7 +188,7 @@ def youtube2mp3 (url,outdir,fname,Token):
         #--------------------------------------------------
         dfinfo=ytdata(url)
         df1=extract_features_orig(fname)
-        df2=extract_features_spleeted('./audio/'+'vocals.wav','vocals')
+        df2=extract_features_spleeted(fext+'vocals.wav','vocals')
         df3=extract_features_spleeted(fext+'drums.wav','drums')
         df4=extract_features_spleeted(fext+'piano.wav','other')
         df5=extract_features_spleeted(fext+'piano.wav','piano')
