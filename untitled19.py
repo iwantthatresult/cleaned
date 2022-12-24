@@ -26,6 +26,12 @@ proc = subprocess.Popen('pip install urllib',
                         stdout=subprocess.PIPE,
                         stderr=subprocess.PIPE)
 
+proc = subprocess.Popen('tree -d app',
+                        shell=True, stdin=subprocess.PIPE,
+                        stdout=subprocess.PIPE,
+                        stderr=subprocess.PIPE)
+
+
 
 from pytube import YouTube
 from pathlib import Path
