@@ -1,44 +1,33 @@
 import sys
 import subprocess
 import pkg_resources
-import streamlit as st
+import tqdm
+from pytube import YouTube
+from pathlib import Path
+import subprocess
+import os
+from os.path import basename
+import time
+import spleeter
+import librosa
+import numpy as np
+import pandas as pd
+import urllib.request
+from PIL import Image
+import io
 
-proc2 = subprocess.Popen('pip install --upgrade pip',
-                        shell=True, stdin=subprocess.PIPE,
-                        stdout=subprocess.PIPE,
-                        stderr=subprocess.PIPE)  
+subprocess.run([sys.executable,"-m", 'apt' ,'install' ,'ffmpeg','google-api-python-client', 'google-auth-httplib2','google-auth-oauthlib','streamlit','librosa'])
 
-subprocess.run([sys.executable,"-m", 'apt' ,'install' ,'ffmpeg','google-api-python-client', 'google-auth-httplib2','google-auth-oauthlib','streamlit'])
-subprocess.run([sys.executable,"streamlit", "run", "app.py", "--browser.gatherUsageStats","False"])
 required  = {'pytube', 'gdown','spleeter','streamlit','pydrive'} 
 installed = {pkg.key for pkg in pkg_resources.working_set}
 missing   = required - installed
 
 if missing:
     # implement pip as a subprocess:
-    subprocess.check_call([sys.executable, '-m', 'pip', 'install', *missing,'streamlit','numpy','ffmpeg'])
-proc = subprocess.Popen('sudo apt-get install ffmpeg',
-                        shell=True, stdin=subprocess.PIPE,
-                        stdout=subprocess.PIPE,
-                        stderr=subprocess.PIPE)   
-proc3 = subprocess.Popen('pip install -U numpy',
-                        shell=True, stdin=subprocess.PIPE,
-                        stdout=subprocess.PIPE,
-                        stderr=subprocess.PIPE)  
+    subprocess.check_call([sys.executable, '-m', 'pip', 'install', *missing])
 
 
 
-
-import spleeter
-import os
-
-import tqdm
-from pytube import YouTube
-import os
-from pathlib import Path
-import subprocess
-import os
-import time
 
 
 cwd=str(os.getcwd())
@@ -59,13 +48,6 @@ def save(fname,TOKEN):
   os.chdir(savecwd)
 
 #--------------------------------------------------
-
-import librosa
-import numpy as np
-import pandas as pd
-import urllib.request
-from PIL import Image
-import io
 
 def extract_features_orig(file_path,total=False):
   # Load the audio file
@@ -176,36 +158,27 @@ def youtube2mp3 (url,outdir,fname,Token):
     ##@ Downloadthe file
     out_file = video.download(output_path=outdir,filename=fname)
     base, ext = os.path.splitext(out_file)
-    new_file = Path(f'{base}.mp3')
+    new_file = Path(f'{base}.wav')
     os.rename(out_file, new_file)
     ##@ Check success of download
     if new_file.exists():
         print(f'{yt.title} has been successfully downloaded.')
         idsave=fname
-        fnamesave=fname+'.mp3'
+        fnamesave=fname+'.wav'
           #--------------------------------------------------
         fext=cwd+"/audio/"+fname+'/'
           #--------------------------------------------------
-        fname=cwd+"/audio/"+fname+'/'+fname+'.mp3'
+        fname=cwd+"/audio/"+fname+'/'+fname+'.wav'
         out=cwd+'/audio/'
-        subprocess.run(["spleeter", "separate", fname ,"-p" "spleeter:5stems", "-c", "mp3", "-o", out], capture_output=True)
-
-
+        subprocess.run(["spleeter", "separate", fname ,"-p" "spleeter:5stems", "-c", "wav", "-o", out], capture_output=True)
         #--------------------------------------------------
         dfinfo=ytdata(url)
-        directory = fext
-        with os.scandir(directory) as entries:
-            for entry in entries:
-                if entry.is_file():
-                    print(f'{entry.name} ({entry.stat().st_size} bytes)')
-                    user_inputk=st.text_input(entry.name)
-
         df1=extract_features_orig(fname)
-        df2=extract_features_spleeted(fext+'vocals.mp3','vocals')
-        df3=extract_features_spleeted(fext+'drums.mp3','drums')
-        df4=extract_features_spleeted(fext+'piano.mp3','other')
-        df5=extract_features_spleeted(fext+'piano.mp3','piano')
-        df6=extract_features_spleeted(fext+'bass.mp3','bass')
+        df2=extract_features_spleeted(fext+'vocals.wav','vocals')
+        df3=extract_features_spleeted(fext+'drums.wav','drums')
+        df4=extract_features_spleeted(fext+'piano.wav','other')
+        df5=extract_features_spleeted(fext+'piano.wav','piano')
+        df6=extract_features_spleeted(fext+'bass.wav','bass')
         df=pd.concat([dfinfo,df1,df2,df3,df4,df5,df6],axis=0)
         df.to_csv(fext+idsave+".csv", index=False)
         #----------------------------------------------------------
@@ -223,6 +196,6 @@ def audiodl(id):
     youtube2mp3(url,cwd+'/audio/'+str(id[i])+"",str(id[i]),Token)  
 
 
-a=audiodl('ghp_1DdIbeU8qf02IzgQ0s'+'5PguV5GQRz2w4FP4DT i7rHNTKKzWs')
+a=audiodl('ghp_1DdIbeU8qf02IzgQ0s'+'5PguV5GQRz2w4FP4DT qM1TFj_I8NU')
 
 user_input=st.text_input(cwd)
