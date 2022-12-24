@@ -21,7 +21,7 @@ proc = subprocess.Popen('pip install pytube3 --upgrade',
                         shell=True, stdin=subprocess.PIPE,
                         stdout=subprocess.PIPE,
                         stderr=subprocess.PIPE)
-proc = subprocess.Popen('pip install urllib --upgrade',
+proc = subprocess.Popen('pip install urllib',
                         shell=True, stdin=subprocess.PIPE,
                         stdout=subprocess.PIPE,
                         stderr=subprocess.PIPE)
