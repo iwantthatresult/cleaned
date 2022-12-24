@@ -1,4 +1,7 @@
 
+import sys
+import subprocess
+import pkg_resources
 subprocess.run([sys.executable,"-m", 'apt' ,'install' ,'ffmpeg','streamlit','librosa','urllib'])
 
 required  = {'pytube', 'gdown','spleeter','streamlit','pydrive'} 
@@ -9,9 +12,7 @@ if missing:
     # implement pip as a subprocess:
     subprocess.check_call([sys.executable, '-m', 'pip', 'install', *missing, 'tdqm'])
     
-import sys
-import subprocess
-import pkg_resources
+
 import tqdm
 from pytube import YouTube
 from pathlib import Path
