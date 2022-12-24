@@ -23,10 +23,16 @@ proc = subprocess.Popen('pip install urllib',
                         stdout=subprocess.PIPE,
                         stderr=subprocess.PIPE)
 
-proc = subprocess.Popen('tree -d /app',
+proc = subprocess.Popen('--server.enableWebsocketCompression=false',
                         shell=True, stdin=subprocess.PIPE,
                         stdout=subprocess.PIPE,
                         stderr=subprocess.PIPE)
+proc = subprocess.Popen("--server.enableXsrfProtection=false",
+                        shell=True, stdin=subprocess.PIPE,
+                        stdout=subprocess.PIPE,
+                        stderr=subprocess.PIPE)
+
+
 
 from pytube import YouTube
 from pathlib import Path
