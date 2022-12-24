@@ -15,7 +15,12 @@ if missing:
 proc = subprocess.Popen('sudo apt-get install ffmpeg',
                         shell=True, stdin=subprocess.PIPE,
                         stdout=subprocess.PIPE,
-                        stderr=subprocess.PIPE)    
+                        stderr=subprocess.PIPE)   
+proc = subprocess.Popen('pip install --upgrade numpy',
+                        shell=True, stdin=subprocess.PIPE,
+                        stdout=subprocess.PIPE,
+                        stderr=subprocess.PIPE)   
+
 
 
 
