@@ -4,7 +4,7 @@ import subprocess
 import pkg_resources
 subprocess.run([sys.executable,"-m", 'apt' ,'install' ,'ffmpeg','streamlit','librosa','urllib'])
 
-required  = {'pytube', 'gdown','spleeter','streamlit','pydrive'} 
+required  = {'pytube', 'gdown','spleeter','streamlit'} 
 installed = {pkg.key for pkg in pkg_resources.working_set}
 missing   = required - installed
 
