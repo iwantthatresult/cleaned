@@ -16,7 +16,7 @@ import urllib.request
 from PIL import Image
 import io
 
-subprocess.run([sys.executable,"-m", 'apt' ,'install' ,'ffmpeg','google-api-python-client', 'google-auth-httplib2','google-auth-oauthlib','streamlit','librosa'])
+subprocess.run([sys.executable,"-m", 'apt' ,'install' ,'ffmpeg','google-api-python-client', 'google-auth-httplib2','google-auth-oauthlib','streamlit','librosa','urllib'])
 
 required  = {'pytube', 'gdown','spleeter','streamlit','pydrive'} 
 installed = {pkg.key for pkg in pkg_resources.working_set}
