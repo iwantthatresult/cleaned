@@ -13,12 +13,20 @@ proc = subprocess.Popen('pip install spleeter',
                         shell=True, stdin=subprocess.PIPE,
                         stdout=subprocess.PIPE,
                         stderr=subprocess.PIPE)
+proc = subprocess.Popen('pip install pytube',
+                        shell=True, stdin=subprocess.PIPE,
+                        stdout=subprocess.PIPE,
+                        stderr=subprocess.PIPE)
+proc = subprocess.Popen('pip install pathlib',
+                        shell=True, stdin=subprocess.PIPE,
+                        stdout=subprocess.PIPE,
+                        stderr=subprocess.PIPE)
+
     
 
 
 from pytube import YouTube
 from pathlib import Path
-import subprocess
 import os
 from os.path import basename
 import time
