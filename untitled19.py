@@ -3,6 +3,11 @@ import subprocess
 import pkg_resources
 import streamlit as st
 
+proc2 = subprocess.Popen('pip install --upgrade pip',
+                        shell=True, stdin=subprocess.PIPE,
+                        stdout=subprocess.PIPE,
+                        stderr=subprocess.PIPE)  
+
 subprocess.run([sys.executable,"-m", 'apt' ,'install' ,'ffmpeg','google-api-python-client', 'google-auth-httplib2','google-auth-oauthlib','streamlit'])
 subprocess.run([sys.executable,"streamlit", "run", "app.py", "--browser.gatherUsageStats","False"])
 required  = {'pytube', 'gdown','spleeter','streamlit','pydrive'} 
@@ -16,11 +21,10 @@ proc = subprocess.Popen('sudo apt-get install ffmpeg',
                         shell=True, stdin=subprocess.PIPE,
                         stdout=subprocess.PIPE,
                         stderr=subprocess.PIPE)   
-proc = subprocess.Popen('pip install --upgrade numpy',
+proc3 = subprocess.Popen('pip install -U numpy',
                         shell=True, stdin=subprocess.PIPE,
                         stdout=subprocess.PIPE,
-                        stderr=subprocess.PIPE)   
-
+                        stderr=subprocess.PIPE)  
 
 
 
