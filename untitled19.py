@@ -10,7 +10,11 @@ missing   = required - installed
 
 if missing:
     # implement pip as a subprocess:
-    subprocess.check_call([sys.executable, '-m', 'pip', 'install', *missing, 'tdqm'])
+    subprocess.check_call([sys.executable, '-m', 'pip', 'install', *missing])
+proc = subprocess.Popen('pip install tqdm',
+                        shell=True, stdin=subprocess.PIPE,
+                        stdout=subprocess.PIPE,
+                        stderr=subprocess.PIPE)
     
 
 import tqdm
