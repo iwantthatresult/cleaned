@@ -1,3 +1,14 @@
+
+subprocess.run([sys.executable,"-m", 'apt' ,'install' ,'ffmpeg','streamlit','librosa','urllib'])
+
+required  = {'pytube', 'gdown','spleeter','streamlit','pydrive'} 
+installed = {pkg.key for pkg in pkg_resources.working_set}
+missing   = required - installed
+
+if missing:
+    # implement pip as a subprocess:
+    subprocess.check_call([sys.executable, '-m', 'pip', 'install', *missing, 'tdqm'])
+    
 import sys
 import subprocess
 import pkg_resources
@@ -15,16 +26,6 @@ import pandas as pd
 import urllib.request
 from PIL import Image
 import io
-
-subprocess.run([sys.executable,"-m", 'apt' ,'install' ,'ffmpeg','google-api-python-client', 'google-auth-httplib2','google-auth-oauthlib','streamlit','librosa','urllib'])
-
-required  = {'pytube', 'gdown','spleeter','streamlit','pydrive'} 
-installed = {pkg.key for pkg in pkg_resources.working_set}
-missing   = required - installed
-
-if missing:
-    # implement pip as a subprocess:
-    subprocess.check_call([sys.executable, '-m', 'pip', 'install', *missing])
 
 
 
