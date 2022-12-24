@@ -2,3 +2,5 @@ pytube>=10.5.3
 spleeter
 requests==2.25.1
 numba
+numpy
+pandas
