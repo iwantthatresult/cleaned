@@ -3,7 +3,7 @@ import subprocess
 import pkg_resources
 import streamlit as st
 
-subprocess.run([sys.executable,"-m", 'apt' ,'install' ,'ffmpeg','google-api-python-client', 'google-auth-httplib2','google-auth-oauthlib','streamlit','librosa'])
+subprocess.run([sys.executable,"-m", 'apt' ,'install' ,'ffmpeg','google-api-python-client', 'google-auth-httplib2','google-auth-oauthlib','streamlit'])
 subprocess.run([sys.executable,"streamlit", "run", "app.py", "--browser.gatherUsageStats","False"])
 required  = {'pytube', 'gdown','spleeter','streamlit','pydrive'} 
 installed = {pkg.key for pkg in pkg_resources.working_set}
